@@ -1,29 +1,29 @@
 package core;
-public class Employee {
+public class Contacts {
 
-	private int id;
-	private String lastName;
+	//private int id;
 	private String firstName;
+	private String lastName;
 	private String email;
-	private BigDecimal salary;
+	private int number;
 	
-	public Employee(int id, String lastName, String firstName, String email,
-			BigDecimal salary) {
+	public Contacts(/*int id,*/ String firstName, String lastName, String email,
+			int number) {
 		super();
-		this.id = id;
+		//this.id = id;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.email = email;
-		this.salary = salary;
+		this.number = number;
 	}
 
-	public int getId() {
+	/*public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
+	}*/
 
 	public String getLastName() {
 		return lastName;
@@ -49,21 +49,19 @@ public class Employee {
 		this.email = email;
 	}
 
-	public BigDecimal getSalary() {
-		return salary;
+	public int getNumber() {
+		return number;
 	}
 
-	public void setSalary(BigDecimal salary) {
-		this.salary = salary;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
 	@Override
 	public String toString() {
 		return String
-				.format("Employee [id=%s, lastName=%s, firstName=%s, email=%s, salary=%s]",
-						id, lastName, firstName, email, salary);
+				.format("Contacts [ firstName=%s,lastName=%s,  email=%s, number=%s]",
+						firstName, lastName,  email, number);
 	}
-	
-	
-		
+
 }
