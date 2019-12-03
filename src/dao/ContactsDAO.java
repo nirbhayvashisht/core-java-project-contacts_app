@@ -24,29 +24,29 @@ public class ContactsDAO {
 		
 		System.out.println("DB connection successful to: " + dburl);
 	}
-	
+
 	public List<Contacts> getAllContacts() throws Exception {
 		List<Contacts> list = new ArrayList<>();
-		
+
 		Statement myStmt = null;
 		ResultSet myRs = null;
-		
+
 		try {
 			myStmt = myConn.createStatement();
 			myRs = myStmt.executeQuery("select * from contacts");
-			
+
 			while (myRs.next()) {
 				Contacts tempContact = convertRowToContacts(myRs);
 				list.add(tempContact);
 			}
 
-			return list;		
+			return list;
 		}
 		finally {
 			close(myStmt, myRs);
 		}
 	}
-	
+
 	public List<Contacts> searchContacts(String firstName) throws Exception {
 		List<Contacts> list = new ArrayList<>();
 
@@ -56,25 +56,25 @@ public class ContactsDAO {
 		try {
 			firstName += "%";
 			myStmt = myConn.prepareStatement("select * from contacts where firstName like ?");
-			
+
 			myStmt.setString(1, firstName);
-			
+
 			myRs = myStmt.executeQuery();
-			
+
 			while (myRs.next()) {
 				Contacts tempContact = convertRowToContacts(myRs);
 				list.add(tempContact);
 			}
-			
+
 			return list;
 		}
 		finally {
 			close(myStmt, myRs);
 		}
 	}
-	
-	
-	
+
+
+
 	private Contacts convertRowToContacts(ResultSet myRs) throws SQLException {
 	    //this function takes the result set and creates a Contacts object with it
 		//and returns that object
@@ -82,13 +82,13 @@ public class ContactsDAO {
 		String firstName = myRs.getString("firstName");
 		String email = myRs.getString("email");
 		int number = myRs.getInt("number");
-		
+
 		Contacts tempEmployee = new Contacts(firstName,lastName,  email, number);
-		
+
 		return tempEmployee;
 	}
 
-	
+
 	private static void close(Connection myConn, Statement myStmt, ResultSet myRs)
 			throws SQLException {
 
@@ -97,16 +97,16 @@ public class ContactsDAO {
 		}
 
 		if (myStmt != null) {
-			
+
 		}
-		
+
 		if (myConn != null) {
 			myConn.close();
 		}
 	}
 
 	private void close(Statement myStmt, ResultSet myRs) throws SQLException {
-		close(null, myStmt, myRs);		
+		close(null, myStmt, myRs);
 	}
 
 	public static void main(String[] args) throws Exception {

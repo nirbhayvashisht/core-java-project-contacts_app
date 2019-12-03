@@ -17,8 +17,8 @@ class ContactsTableModel extends AbstractTableModel {
 			"Number" };
 	private List<Contacts> contacts;
 
-	public ContactsTableModel(List<Contacts> theEmployees) {
-		contacts = theEmployees;
+	public ContactsTableModel(List<Contacts> theContacts) {
+		contacts = theContacts;
 	}
 
 	@Override
